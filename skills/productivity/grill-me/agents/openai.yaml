@@ -1,0 +1,5 @@
+interface:
+  display_name: "Grill Me"
+  short_description: "透過訪談互動精煉計畫內容"
+policy:
+  allow_implicit_invocation: false

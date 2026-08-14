@@ -1,0 +1,5 @@
+interface:
+  display_name: "Wayfinder"
+  short_description: "將大型工作繪製為決策 Ticket 地圖"
+policy:
+  allow_implicit_invocation: false

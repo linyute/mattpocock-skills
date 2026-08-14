@@ -1,0 +1,3 @@
+interface:
+  display_name: "Resolving Merge Conflicts"
+  short_description: "解決合併（Merge）與 Rebase 衝突"

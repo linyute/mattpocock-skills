@@ -1,0 +1,5 @@
+interface:
+  display_name: "Loop Me"
+  short_description: "定義您想要建立的工作流程規格"
+policy:
+  allow_implicit_invocation: false

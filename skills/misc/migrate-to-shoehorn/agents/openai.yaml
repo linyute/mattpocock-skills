@@ -1,0 +1,3 @@
+interface:
+  display_name: "Migrate to Shoehorn"
+  short_description: "將測試斷言替換為 Shoehorn"

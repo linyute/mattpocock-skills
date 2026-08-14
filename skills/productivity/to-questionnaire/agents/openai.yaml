@@ -1,0 +1,5 @@
+interface:
+  display_name: "To Questionnaire"
+  short_description: "預先將問題彙整至文件中供他人解答"
+policy:
+  allow_implicit_invocation: false

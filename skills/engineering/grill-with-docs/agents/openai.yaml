@@ -1,0 +1,5 @@
+interface:
+  display_name: "Grill with Docs"
+  short_description: "嚴格審視設計並撰寫其文件"
+policy:
+  allow_implicit_invocation: false

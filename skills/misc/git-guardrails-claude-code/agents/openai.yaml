@@ -1,0 +1,3 @@
+interface:
+  display_name: "Git Guardrails (Claude Code)"
+  short_description: "攔截危險的 Git 指令"

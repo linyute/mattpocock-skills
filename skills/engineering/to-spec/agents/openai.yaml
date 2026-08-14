@@ -1,0 +1,5 @@
+interface:
+  display_name: "To Spec"
+  short_description: "將對話內容轉化為規格文件"
+policy:
+  allow_implicit_invocation: false

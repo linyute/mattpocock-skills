@@ -1,0 +1,3 @@
+interface:
+  display_name: "Code Review"
+  short_description: "根據標準與規格審查程式碼差異"

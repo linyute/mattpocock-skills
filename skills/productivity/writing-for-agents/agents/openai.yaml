@@ -1,0 +1,3 @@
+interface:
+  display_name: "Writing For Agents"
+  short_description: "撰寫供 Agent 讀取與使用的文件"

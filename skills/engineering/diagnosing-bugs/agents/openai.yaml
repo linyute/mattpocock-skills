@@ -1,0 +1,3 @@
+interface:
+  display_name: "Diagnosing Bugs"
+  short_description: "診斷棘手的 Bug 與迴歸問題"

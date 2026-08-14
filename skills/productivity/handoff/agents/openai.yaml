@@ -1,0 +1,5 @@
+interface:
+  display_name: "Handoff"
+  short_description: "將對話內容精簡濃縮為交接文件"
+policy:
+  allow_implicit_invocation: false
