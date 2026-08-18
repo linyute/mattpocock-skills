@@ -1,14 +1,14 @@
 ---
 name: 'to-tickets'
 description: '將計劃、規格或目前的對話分解為一組追光彈票券，每張票券宣告其阻塞邊界，發布至設定的追蹤器 — 在本地每張票券一個檔案中作為文字邊界，或在真實追蹤器上作為原生阻塞連結。'
-disable-model-invocation: 'true'
+disable-model-invocation: true
 ---
 
 # 轉為票券
 
 將計劃、規格或對話分解為一組**票券（tickets）** — 追光彈垂直切片，每張票券宣告**阻塞**它的票券。
 
-議題追蹤器與分揀標籤詞彙應該已經提供給您 — 如果沒有，請執行 `/setup-matt-pocock-skills`。
+議題追蹤器與分揀標籤詞彙應已提供給您。若尚未提供，請告知使用者執行 `/setup-matt-pocock-skills`。
 
 ## 流程
 

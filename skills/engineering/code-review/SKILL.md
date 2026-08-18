@@ -10,7 +10,7 @@ description: '沿著兩個軸線審查自固定點（提交、分支、標籤或
 
 兩個軸線皆作為**平行子 Agent**執行，因此不會互相污染上下文，然後此技能會彙整它們的發現。
 
-議題追蹤器應該已經提供給您 — 如果缺少 `docs/agents/issue-tracker.md`，請執行 `/setup-matt-pocock-skills`。
+應已提供議題追蹤器給你。如果缺少 `docs/agents/issue-tracker.md`，請告知使用者執行 `/setup-matt-pocock-skills`。
 
 ## 流程
 

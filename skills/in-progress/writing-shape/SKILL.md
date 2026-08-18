@@ -1,7 +1,7 @@
 ---
 name: 'writing-shape'
 description: '寫作、開採 — 將原始材料逐段塑造為文章。'
-disable-model-invocation: 'true'
+disable-model-invocation: true
 ---
 
 <what-to-do>

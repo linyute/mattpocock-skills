@@ -1,7 +1,7 @@
 ---
 name: 'ask-matt'
 description: '詢問適合您情況的技能或流程。本儲存庫中技能的路由器。'
-disable-model-invocation: 'true'
+disable-model-invocation: true
 ---
 
 # 詢問 Matt

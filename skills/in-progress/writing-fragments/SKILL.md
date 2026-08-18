@@ -1,7 +1,7 @@
 ---
 name: 'writing-fragments'
 description: '寫作、探索 — 挖掘原始片段，尚無結構。'
-disable-model-invocation: 'true'
+disable-model-invocation: true
 ---
 
 <what-to-do>

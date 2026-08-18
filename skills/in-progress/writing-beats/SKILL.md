@@ -1,7 +1,7 @@
 ---
 name: 'writing-beats'
 description: '寫作、開採 — 將原始材料組合為節奏之旅，在節奏依賴各個術語前將其打下基礎。'
-disable-model-invocation: 'true'
+disable-model-invocation: true
 ---
 
 <what-to-do>

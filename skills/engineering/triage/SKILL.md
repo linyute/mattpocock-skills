@@ -1,7 +1,7 @@
 ---
 name: 'triage'
 description: '透過分揀角色的狀態機引導議題與外部 PR — 進行分類、驗證、必要時盤問，並撰寫準備好供 Agent 使用的簡報。'
-disable-model-invocation: 'true'
+disable-model-invocation: true
 ---
 
 # 分揀
@@ -40,7 +40,7 @@ disable-model-invocation: 'true'
 
 每個經過分揀的議題都應該恰好帶有一個類別角色與一個狀態角色。如果狀態角色衝突，請標記它並在進行任何其他操作之前詢問維護者。
 
-這些是規範的角色名稱 — 議題追蹤器中使用的實際標籤字串可能會有所不同。對映應該已經提供給您 — 如果沒有，請執行 `/setup-matt-pocock-skills`。
+這些是規範的角色名稱 — 議題追蹤器中實際使用的標籤字串可能有所不同。應該會提供標籤對應表給你。如果沒有，請告訴使用者執行 `/setup-matt-pocock-skills`。
 
 狀態轉移：未標記標籤的議題通常會先轉至 `needs-triage`；從那裡移動至 `needs-info``ready-for-agent`、`ready-for-human` 或 `wontfix`。一旦回報者回覆，`needs-info` 就會返回 `needs-triage`。維護者可以隨時覆寫 — 標記看起來異常的轉移並在繼續前詢問。
 
@@ -73,7 +73,7 @@ disable-model-invocation: 'true'
 
 3. **驗證主張。** 在進行任何盤問之前，檢查該主張是否站得住腳。對於 Bug，從回報者的步驟重現它。對於 PR，確認差異實現了其所聲稱的內容 — 切換檢出它，執行相關測試或命令。回報發生的情況：已確認（帶有程式碼路徑）、失敗或細節不足（強烈 `needs-info` 訊號）。確認無誤的驗證能製作出強大得多的 Agent 簡報。
 
-4. **盤問（必要時）。** 如果請求需要充實，請將 `/grilling` 與 `/domain-modeling` 技能一起執行 — 一次透過一輪問題盤問成形，隨決策確定內聯磨礪領域術語並更新 `CONTEXT.md`/ADR。
+4. **盤問（如有需要）。** 如果請求需要補充細節，請呼叫 Skill 工具兩次，分別用於「盤問」和「領域建模」——一次提出一輪問題，逐步完善請求、精確化領域術語，並在決策確定時即時更新 `CONTEXT.md`／ADR。
 
 5. **套用結果：**
    - `ready-for-agent` — 發布 Agent 簡報留言（[AGENT-BRIEF.md](AGENT-BRIEF.md)）。

@@ -1,7 +1,7 @@
 ---
 name: 'setup-matt-pocock-skills'
 description: '為工程技能設定此儲存庫 — 設定其議題追蹤器、分揀標籤詞彙以及領域文件佈局。在第一次使用其他工程技能之前執行一次。'
-disable-model-invocation: 'true'
+disable-model-invocation: true
 ---
 
 # 設定 Matt Pocock 的技能

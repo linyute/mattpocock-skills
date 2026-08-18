@@ -1,7 +1,7 @@
 ---
 name: 'to-questionnaire'
 description: '將您無法完全回答的決策轉換為供其他人填寫的問卷。'
-disable-model-invocation: 'true'
+disable-model-invocation: true
 ---
 
 將使用者無法獨自回答的事物轉換為**問卷** — 一份他們交給一個人非同步填寫，或在會議中一同填寫的 Markdown 文件。接收者擁有使用者缺乏的知識；問卷將知識從他們那裡引導出來。

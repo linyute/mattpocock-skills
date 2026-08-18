@@ -1,7 +1,7 @@
 ---
 name: 'loop-me'
 description: '在此工作區內，就我想建構的工作流程規格盤問我。'
-disable-model-invocation: 'true'
+disable-model-invocation: true
 argument-hint: '要設計的工作流程，或留空以尋找一個'
 ---
 

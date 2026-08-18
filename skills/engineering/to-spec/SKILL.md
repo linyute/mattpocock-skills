@@ -1,12 +1,12 @@
 ---
 name: 'to-spec'
 description: '將目前的對話轉換為規格並發布至專案議題追蹤器 — 無需訪談，僅對您已經討論過的內容進行綜合。'
-disable-model-invocation: 'true'
+disable-model-invocation: true
 ---
 
 此技能利用目前的對話上下文與程式碼庫理解來產生規格。**切勿**訪談使用者 — 僅綜合您已經知道的內容。
 
-議題追蹤器與分揀標籤詞彙應該已經提供給您 — 如果沒有，請執行 `/setup-matt-pocock-skills`。
+議題追蹤器與分揀標籤詞彙應已提供給您。若尚未提供，請告知使用者執行 `/setup-matt-pocock-skills`。
 
 ## 流程
 

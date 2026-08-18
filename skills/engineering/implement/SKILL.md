@@ -1,7 +1,7 @@
 ---
 name: 'implement'
 description: '依據規格或一組票券實作一項工作。'
-disable-model-invocation: 'true'
+disable-model-invocation: true
 ---
 
 實作使用者在規格或票券中描述的工作。

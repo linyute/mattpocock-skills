@@ -1,14 +1,14 @@
 ---
 name: 'setup-ts-deep-modules'
 description: '將 dependency-cruiser 連線至 TypeScript 儲存庫，使每個套件成為深層模組 — 實作隱藏在子資料夾中，僅能透過其進入點檔案存取。由使用者呼叫。'
-disable-model-invocation: 'true'
+disable-model-invocation: true
 ---
 
 # 設定 TS 深層模組
 
 將此儲存庫中的每個套件都打造為**深層模組（deep module）**：小介面背後隱藏大量行為。套件的公開表面是其**進入點（entry points）** — 套件根目錄處的檔案 — 且其子資料夾中的每件事物都是隱藏的。此技能安裝 [dependency-cruiser](https://github.com/sverweij/dependency-cruiser) 以及使進入點成為唯一進入方式的規則，然後證明規則發揮作用。
 
-關於詞彙（深層模組、介面、接縫、深度），請執行 `/codebase-design` 技能 — 在整個過程中使用其語言。
+關於詞彙（深層模組、介面、接縫、深度），請使用「codebase-design」呼叫 Skill 工具，並在全文採用其用語。
 
 ## 其強制的形狀
 
