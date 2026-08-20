@@ -1,0 +1,49 @@
+site_name: 給真實工程師的技能
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: blue grey
+      accent: teal
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+plugins:
+  - search
+nav:
+  - 首頁: index.md
+  - 文章:
+    - 一套完整的端到端 AI 開發工作流程: ./posts/skills-a-complete-ai-coding-workflow-end-to-end.md
+    - 變更記錄: ./posts/skills-changelog.md
+  - 工程技能:
+    - ask-matt: ./engineering/ask-matt.md
+    - code-review: ./engineering/code-review.md
+    - codebase-design: ./engineering/codebase-design.md
+    - diagnosing-bugs: ./engineering/diagnosing-bugs.md
+    - domain-modeling: ./engineering/domain-modeling.md
+    - grill-with-docs: ./engineering/grill-with-docs.md
+    - improve-codebase-architecture: ./engineering/improve-codebase-architecture.md
+    - implement: ./engineering/implement.md
+    - prototype: ./engineering/prototype.md
+    - research: ./engineering/research.md
+    - resolving-merge-conflicts: ./engineering/resolving-merge-conflicts.md
+    - setup-matt-pocock-skills: ./engineering/setup-matt-pocock-skills.md
+    - tdd: ./engineering/tdd.md
+    - to-spec: ./engineering/to-spec.md
+    - to-tickets: ./engineering/to-tickets.md
+    - triage: ./engineering/triage.md
+    - wayfinder: ./engineering/wayfinder.md
+    - wizard: ./engineering/wizard.md
+  - 生產力技能:
+    - grill-me: ./productivity/grill-me.md
+    - grilling: ./productivity/grilling.md
+    - handoff: ./productivity/handoff.md
+    - teach: ./productivity/teach.md
+    - to-questionnaire: ./productivity/to-questionnaire.md
+    - wait-what: ./productivity/wait-what.md
+    - writing-for-agents: ./productivity/writing-for-agents.md
