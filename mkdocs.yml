@@ -19,7 +19,9 @@ nav:
   - 首頁: index.md
   - 文章:
     - 一套完整的端到端 AI 開發工作流程: ./posts/skills-a-complete-ai-coding-workflow-end-to-end.md
+    - 25 個代理技能，提升你在 GitHub Copilot 的工作流程: ./posts/25-agent-skills-to-improve-your-workflow-in-GitHub-Copilot.md
     - 變更記錄: ./posts/skills-changelog.md
+    - 其他連結: ./posts/other-links.md
   - 工程技能:
     - ask-matt: ./engineering/ask-matt.md
     - code-review: ./engineering/code-review.md
