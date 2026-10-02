@@ -1,6 +1,6 @@
 ---
 name: writing-for-agents
-description: 'Writing documents for agents. Use when creating or editing skills, or modifying AGENTS.md or CLAUDE.md.'
+description: '為代理人撰寫文件。在建立或編輯技能，或修改 AGENTS.md 或 CLAUDE.md 時使用。'
 ---
 
 為代理人使用的任何文件撰寫參考指引：技能、`AGENTS.md` / `CLAUDE.md`、透過指標存取的文件。包裝形式不同；撰寫方式相同：相同的槓桿讓每一份文件都具備可預測性，因為代理人在每次執行時遵循相同的**流程**，而非產出相同的輸出。

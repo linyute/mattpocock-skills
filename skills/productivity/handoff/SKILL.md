@@ -1,7 +1,7 @@
 ---
 name: handoff
-description: 'Compact the current conversation into a handoff document for another agent to pick up.'
-argument-hint: "What will the next session be used for?"
+description: '將目前的對話壓縮為交接文件，供另一個代理人接續工作。'
+argument-hint: '下一個工作階段將用於什麼目的？'
 disable-model-invocation: true
 ---
 

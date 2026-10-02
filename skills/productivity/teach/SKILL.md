@@ -1,8 +1,8 @@
 ---
 name: teach
-description: 'Teach the user a new skill or concept, within this workspace.'
+description: '在此工作區內，向使用者傳授新技能或概念。'
 disable-model-invocation: true
-argument-hint: "What would you like to learn about?"
+argument-hint: '您想要學習什麼主題？'
 ---
 
 使用者已要求您向他們傳授某些知識。這是一項具備狀態的請求——他們打算在多個工作階段中學習該主題。

@@ -1,6 +1,6 @@
 ---
 name: grilling
-description: 'Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any '\''grill'\'' trigger phrases.'
+description: '針對計畫、決策或想法無情地對使用者進行深度提問。當使用者想要對自己的思維進行壓力測試，或使用任何「grill」觸發詞時使用。'
 ---
 
 無情地對使用者進行深度訪談，直到雙方達成共識。將此過程繪製為**設計樹**：每個決策都會分支成附屬於其上的後續決策。
