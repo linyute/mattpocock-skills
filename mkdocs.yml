@@ -29,11 +29,14 @@ nav:
     - diagnosing-bugs: ./engineering/diagnosing-bugs.md
     - domain-modeling: ./engineering/domain-modeling.md
     - grill-with-docs: ./engineering/grill-with-docs.md
+    - implement: ./engineering/implement.md
+    - implement-spec: ./engineering/implement-spec.md
     - improve-codebase-architecture: ./engineering/improve-codebase-architecture.md
     - implement: ./engineering/implement.md
+    - pr: ./engineering/pr.md
     - prototype: ./engineering/prototype.md
     - research: ./engineering/research.md
-    - resolving-merge-conflicts: ./engineering/resolving-merge-conflicts.md
+    - retro: ./engineering/retro.md
     - setup-matt-pocock-skills: ./engineering/setup-matt-pocock-skills.md
     - tdd: ./engineering/tdd.md
     - to-spec: ./engineering/to-spec.md
