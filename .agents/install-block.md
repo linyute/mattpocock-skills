@@ -1,10 +1,10 @@
-# 規範安裝區塊
+# 標準安裝區塊
 
-單一安裝說明，單一用字。`README.md`、`.changeset/*` 以及 `docs/` 下的每一個頁面都必須使用**這個**說明，別無其他。請先在此處修改，然後進行傳播。
+一套安裝說明，統一措辭。`README.md`、`.changeset/*` 以及 `docs/` 下的每個頁面都必須採用**這套說明**，不可使用其他說法。先在此處修改，然後推播至各處。
 
-`mattpocock-skills` 列在 **Claude Code 的官方市集中** — 設定名稱為 `claude-plugins-official`，來源儲存庫為 `anthropics/claude-plugins-official` — 這是每個 Claude Code 安裝版開箱即用的。不需要先新增任何市集。Anthropic 官方市集預設開啟自動更新（[discover-plugins](https://code.claude.com/docs/en/discover-plugins)），因此「自動接收更新」是真實的說明，而非願景。
+`mattpocock-skills` 已列於 **Claude Code 官方市集**（設定名稱為 `claude-plugins-official`，來源儲存庫為 `anthropics/claude-plugins-official`），每個 Claude Code 安裝環境皆隨附該市集。無需事先新增市集。Anthropic 官方市集預設啟用自動更新（[discover-plugins](https://code.claude.com/docs/en/discover-plugins)），因此「更新會自動送達」是真實的主張，而非期望。
 
-## Claude Code — 外掛程式
+## Claude Code：外掛程式
 
 <canonical-block name="claude-code">
 
@@ -12,19 +12,19 @@
 claude plugins install mattpocock-skills
 ```
 
-或者，在工作階段內部：
+或從會話內部執行：
 
 ```
 /plugin install mattpocock-skills
 ```
 
-它位於 Claude Code 的官方市集中，因此不需要先新增任何內容，且更新會自動到達。
+它位於 Claude Code 官方市集中，因此無需事先新增任何內容，且更新會自動送達。
 
 </canonical-block>
 
-## Codex 與其他 Agent — skills.sh
+## Codex 與其他代理：skills.sh
 
-外掛程式僅限 Claude Code 使用。在其他任何地方，[skills.sh](https://skills.sh/mattpocock/skills) 都會將可編輯的技能檔案複製到專案中。在 `README.md` 上請使用全套形式：
+該外掛程式僅適用於 Claude Code。在其他所有環境中，[skills.sh](https://skills.sh/mattpocock/skills) 會將可編輯的技能檔案複製到專案中。在 `README.md` 上請使用完整集合形式：
 
 <canonical-block name="skills-sh-whole-set">
 
@@ -32,11 +32,11 @@ claude plugins install mattpocock-skills
 npx skills@latest add mattpocock/skills
 ```
 
-選擇您想要的技能，以及要安裝它們的程式編寫 Agent。**安裝程式會讓您選擇要取得哪些技能 — 請確保 `setup-matt-pocock-skills` 是其中之一。**
+挑選您想要的技能，以及要將其安裝到哪些寫程式代理。**安裝程式允許您選擇要採用哪些技能：請確保包含 `setup-matt-pocock-skills`。**
 
 </canonical-block>
 
-…以及在單獨提及單一技能的任何地方使用單一技能形式。請注意，**`docs/` 頁面並非此區塊的使用者**：ai-hero 會在內文上方呈現安裝元件，因此寫出命令的頁面會產生重複。請參閱 [writing-docs.md](./writing-docs.md)。
+…以及單一技能獨立列出時所使用的單一技能形式。請注意，**`docs/` 頁面不是此區塊的使用者**：ai-hero 會在內文上方呈現安裝小工具，因此若頁面寫出這些指令就會造成重複。請參閱 [writing-docs.md](./writing-docs.md)。
 
 <canonical-block name="skills-sh-one-skill">
 
@@ -50,12 +50,12 @@ npx skills@latest update <name>
 
 </canonical-block>
 
-`skills@latest` 是這三者中固定的拼寫方式。`docs/` 下的頁面過去包含這些命令的自身副本；這些區塊現在已刪除而非修正，因為網站會自行呈現安裝命令。
+這三處皆固定拼寫為 `skills@latest`。`docs/` 底下的頁面過去曾各自帶有這些指令的副本；現在這些區塊已被刪除而非修正，因為網站本身會呈現安裝指令。
 
-## 這兩種途徑是互斥的
+## 這兩種途徑互斥
 
-外掛程式是您訂閱的管理式唯讀套件。skills.sh 則會寫入由您擁有與編輯的檔案。同時安裝這兩者會讓使用者擁有兩份相同的技能 — 請始終說明「選擇其中之一」。
+外掛程式是您訂閱的受控唯讀組合套裝。skills.sh 則寫入由您擁有並可編輯的檔案。同時安裝這兩者會讓使用者獲得每項技能的重複複本：請務必告知「二擇一」。
 
-## 非安裝說明
+## 非正式安裝說明
 
-`.claude-plugin/marketplace.json` 使該儲存庫成為其自身的單一外掛程式市集（`/plugin marketplace add mattpocock/skills`，接著 `/plugin install mattpocock-skills@mattpocock`）。官方清單取代了它。它作為直接安裝儲存庫（未發布的認可或分支）的備用方案被保留，且**不**會對使用者進行文件說明。
+`.claude-plugin/marketplace.json` 使此儲存庫成為其自身的單一外掛程式市集（`/plugin marketplace add mattpocock/skills`，接著 `/plugin install mattpocock-skills@mattpocock`）。官方清單已取代它。該檔案僅保留作為直接安裝儲存庫（未發布的提交，或分支）時的備用方案，**不**向使用者公開說明。

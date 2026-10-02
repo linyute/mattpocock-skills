@@ -1,42 +1,42 @@
 ---
 name: 'git-guardrails-claude-code'
-description: '設定 Claude Code Hook 以在危險的 Git 命令（push、reset --hard、clean、branch -D 等）執行前阻止它們。當使用者希望防止破壞性 Git 操作、新增 Git 安全 Hook，或在 Claude Code 中阻止 Git push/reset 時使用。'
+description: '設定 Claude Code 勾點，在危險的 git 指令（push、reset --hard、clean、branch -D 等）執行前予以封鎖。當使用者想要防止破壞性的 git 操作、新增 git 安全勾點，或在 Claude Code 中封鎖 git push/reset 時使用。'
 ---
 
-# 設定 Git 安全護欄
+# 設定 Git 防護機制
 
-設定一個 PreToolUse Hook，在 Claude 執行危險 Git 命令前對其進行攔截與阻止。
+設定 PreToolUse 勾點，在 Claude 執行危險的 git 指令前進行攔截並封鎖。
 
-## 什麼會被阻止
+## 被封鎖的項目
 
-- `git push`（包含 `--force` 的所有變體）
+- `git push`（包含 `--force` 在內的所有變體）
 - `git reset --hard`
 - `git clean -f` / `git clean -fd`
 - `git branch -D`
 - `git checkout .` / `git restore .`
 
-當被阻止時，Claude 會看到一條訊息告知其沒有權限存取這些命令。
+當被封鎖時，Claude 會看到一則訊息，告知其無權存取這些指令。
 
 ## 步驟
 
-### 1. 詢問範疇
+### 1. 詢問範圍
 
-詢問使用者：僅為**此專案**安裝（`.claude/settings.json`）還是為**所有專案**安裝（`~/.claude/settings.json`）？
+詢問使用者：**僅為此專案**（`.claude/settings.json`）安裝，還是**為所有專案**（`~/.claude/settings.json`）安裝？
 
-### 2. 複製 Hook 腳本
+### 2. 複製勾點指令碼
 
-隨附的腳本位於：[scripts/block-dangerous-git.sh](scripts/block-dangerous-git.sh)
+隨附的指令碼位於：[scripts/block-dangerous-git.sh](scripts/block-dangerous-git.sh)
 
-根據範疇將其複製至目標位置：
+根據範圍將其複製到目標位置：
 
 - **專案**：`.claude/hooks/block-dangerous-git.sh`
 - **全域**：`~/.claude/hooks/block-dangerous-git.sh`
 
-使用 `chmod +x` 使其可執行。
+使用 `chmod +x` 使其具備可執行權限。
 
-### 3. 向設定新增 Hook
+### 3. 將勾點新增至設定
 
-新增至適當的設定檔案：
+新增至相應的設定檔：
 
 **專案**（`.claude/settings.json`）：
 
@@ -78,11 +78,11 @@ description: '設定 Claude Code Hook 以在危險的 Git 命令（push、reset 
 }
 ```
 
-如果設定檔案已經存在，將 Hook 合併至現有的 `hooks.PreToolUse` 陣列中 — 不要覆寫其他設定。
+若設定檔已存在，將該勾點合併至現有的 `hooks.PreToolUse` 陣列中。請勿覆寫其他設定。
 
-### 4. 詢問客製化
+### 4. 詢問自訂需求
 
-詢問使用者是否想要從阻止清單中新增或移除任何模式。據此編輯複製的腳本。
+詢問使用者是否要從封鎖清單中新增或移除任何模式。相應編輯複製的指令碼。
 
 ### 5. 驗證
 
@@ -92,4 +92,4 @@ description: '設定 Claude Code Hook 以在危險的 Git 命令（push、reset 
 echo '{"tool_input":{"command":"git push origin main"}}' | <path-to-script>
 ```
 
-應帶著結束碼 2 離開並在 stderr 印出 BLOCKED 訊息。
+應以代碼 2 結束並在 stderr 印出 BLOCKED 訊息。

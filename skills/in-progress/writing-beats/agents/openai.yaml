@@ -1,5 +1,5 @@
 interface:
   display_name: "Writing Beats"
-  short_description: "將原始素材組合為寫作節奏（Beats）"
+  short_description: "Assemble raw material into beats"
 policy:
   allow_implicit_invocation: false

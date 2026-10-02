@@ -1,3 +1,3 @@
 interface:
   display_name: "TDD"
-  short_description: "測試驅動開發：紅燈-綠燈-重構"
+  short_description: "Test-driven red-green-refactor"

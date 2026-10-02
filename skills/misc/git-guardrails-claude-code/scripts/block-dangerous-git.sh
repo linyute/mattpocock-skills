@@ -17,7 +17,7 @@ DANGEROUS_PATTERNS=(
 
 for pattern in "${DANGEROUS_PATTERNS[@]}"; do
   if echo "$COMMAND" | grep -qE "$pattern"; then
-    echo "已攔截：'$COMMAND' 符合危險模式 '$pattern'。使用者已限制您執行此操作。" >&2
+    echo "已封鎖：'$COMMAND' 符合危險模式 '$pattern'。使用者已阻止您執行此操作。" >&2
     exit 2
   fi
 done

@@ -1,3 +1,3 @@
 interface:
   display_name: "Wizard"
-  short_description: "產生互動式設定精靈"
+  short_description: "Generate an interactive setup wizard"

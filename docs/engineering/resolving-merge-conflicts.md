@@ -1,51 +1,53 @@
-## 功能說明
+> **已封存。**此 skill 已在 v1.3.0 中從外掛程式中移除，且不再維護。沒有任何東西取代它：agent 可以在沒有專用 skill 的情況下處理 merge 或 rebase 衝突。本頁面保留供參考。
 
-`resolving-merge-conflicts` 逐個程式碼區塊（hunk）地處理進行中的 git merge 或 rebase，然後執行專案自己的檢查，並透過一次提交（commit）完成操作。
+## 它的功能
 
-它拒絕將衝突視為純文字問題。在碰觸任何程式碼區塊之前，它會將每一側追溯回其**[第一手來源（primary source）](https://www.aihero.dev/ai-coding-dictionary/primary-source)** — 提交訊息、PR、原始議題 — 因此它是在兩個意圖之間進行選擇，而不是在兩塊文字之間進行選擇，且只要兩者相容它就會予以保留。在兩者確實不相容之處，它會挑選符合合併陳述目標的一側，並指出權衡考量。它不會捏造任何新行為來粉飾衝突，且 `--abort` 不是它擁有的選項：合併總是會推進至完成的提交。
+`resolving-merge-conflicts` 會逐個 hunk 處理進行中的 git merge 或 rebase，然後執行專案本身的檢查，並以 commit 完成操作。
 
-## 何時使用
+它拒絕將衝突視為純文字問題。在處理 hunk 之前，它會將每一方追溯至其**[主要來源 (primary sources)](https://www.aihero.dev/ai-coding-dictionary/primary-source)**（commit 訊息、PR、原始 issue），因此它是在兩個意圖之間做選擇，而不是在兩個文字區塊之間做選擇，並且在兩者相容之處同時保留兩者。在兩者確實無法相容的地方，它會挑選符合該 merge 所聲明目標的一方，並指出取捨。它不會捏造任何新行為來掩飾衝突，而且 `--abort` 不是它的選項：merge 總是會進行到完成 commit 為止。
+
+## 何時使用它
 
 輸入 `/resolving-merge-conflicts`，或者當任務適合時，[agent](https://www.aihero.dev/ai-coding-dictionary/agent) 會自動使用它。
 
-當 git 已經停在它自身無法解決的衝突上時使用它。它的範圍僅限於你面前的衝突，而不涵蓋其兩側的任何內容：
+當 git 已經因為無法自行解決的衝突而停止時，請使用它。它的範圍僅限於眼前的衝突，而非衝突兩側的任何其他事物：
 
-| 你的狀況 | 技能 |
+| 你的情況 | 技能 |
 | --- | --- |
-| 處於 merge 或 rebase 中途，檔案樹中存在衝突標記 | 本技能 |
-| 合併已完成，但現在某些內容因你看不到的原因而行為異常 | [diagnosing-bugs](https://aihero.dev/skills-diagnosing-bugs) |
-| 規劃如何切分工作以使分支衝突更少 | 以上皆非 — 參見下方的平行工作問題 |
+| 處於 merge 或 rebase 中途，工作樹中存在衝突標記 | 本項技能 |
+| Merge 完成，現在某些東西因你看不到的原因而異常運作 | [diagnosing-bugs](https://aihero.dev/skills-diagnosing-bugs) |
+| 規劃如何切分工作以減少分支衝突 | 兩者皆非：請參閱下方的平行工作問題 |
 
-## 第一手來源優先於 `ours` 與 `theirs`
+## 主要來源優先於 `ours` 和 `theirs`
 
-本技能旨在消除的失敗模式是透過標記進行解決：`--ours`、`--theirs`，或手動刪除看起來不那麼重要的區塊，從而使標記消失且建構（build）編譯通過。這種解決方案在語法上可以是完美的，但仍然會靜默地丟棄某人刻意進行的變更。
+此技能存在的目的在於消除透過旗標解決衝突的失敗模式：`--ours`、`--theirs`，或者手動刪除看似較不重要的區塊，以便消除標記並讓建置編譯通過。這種解決方式在語法上可能是完美的，但仍會默默遺漏某人刻意進行的變更。
 
-你無法保留未曾閱讀過的意圖。因此工作從歷史紀錄開始 — 提交、PR、[tickets](https://www.aihero.dev/ai-coding-dictionary/ticket) — 隨後才轉移至 diff。迴圈中的另一個步驟存在的原因相同：本技能尋找儲存庫自身的 [自動化檢查（automated checks）](https://www.aihero.dev/ai-coding-dictionary/automated-check) 並在提交前執行它們，因為在 git 中，合併是最容易產生既滿足兩個分支卻又無法通過任何一方測試之程式碼的地方。
+你無法保留你未曾閱讀過的意圖。因此工作從歷史記錄（commit、PR、[ticket](https://www.aihero.dev/ai-coding-dictionary/ticket)）開始，之後才轉向 diff。循環中的另一個步驟也是基於同樣的原因而存在：該 skill 會找到儲存庫本身的[自動化檢查 (automated checks)](https://www.aihero.dev/ai-coding-dictionary/automated-check)，並在 commit 前執行它們，因為 merge 是 git 中最容易產出同時滿足兩個分支卻無法通過任一分支測試的程式碼的地方。
 
 ## 常見問題
 
-**Claude Code 本身解決衝突的能力已經相當不錯。為什麼這還需要一個技能？**
+**Claude Code 本身解決衝突就已經相當出色了。為什麼這需要一個 skill？**
 
-附加價值在於「尋找第一手來源」與「執行回饋迴圈」這兩個步驟，否則每次都必須手動給予 prompt 提示。未經提示的 agent 通常會單憑 diff 產生一個似合理的解決方案並停在那裡。本技能的價值在於它不會讓 agent 跳過的兩個步驟 — 閱讀每一側存在的原因，以及隨後執行檢查。相對於良好的 [model](https://www.aihero.dev/ai-coding-dictionary/model)（模型）而言，這是一個微弱的優勢，且本意即是如此：至少有一位讀者預測隨著模型的改進，這整個技能將變成無操作（no-op）。
+附加價值在於「尋找主要來源」和「執行回饋循環」步驟，否則每次都必須手動 prompt。未經 prompt 的 agent 通常只會從 diff 產出貌似合理的解決方案並停在那裡。該 skill 的價值在於它不允許 agent 跳過的兩個步驟：閱讀每一方存在的原因，以及隨後執行檢查。相較於優秀的[模型](https://www.aihero.dev/ai-coding-dictionary/model)，這是一個微小的優勢，而且它本應如此：至少有一位讀者預測，隨著模型進步，整項 skill 都將變得不再必要。
 
-**我是否應該從一開始就讓平行 agent 避開相同的檔案以避免衝突？**
+**我應該讓平行 agent 避開相同的檔案以從根本上避免衝突嗎？**
 
-大體上不需要。在平行任務之間劃分檔案區域的代價高於其節省的代價，因為 agent 在處理合併衝突方面已經足夠優秀，權衡考量並不像看起來那麼苛刻。值得保持的一項規範是先進行大型重構。在從其分叉出 10 個分支後著陸的大型重新命名是始終代價高昂的情況。
+大多不需要。在平行任務之間劃分檔案區域所花費的成本高於它所節省的，因為 agent 在處理 merge 衝突方面已經足夠優秀，取捨並不如表面看起來那麼嚴苛。唯一值得維持的紀律是先進行大型重構。在分支出十個分支之後才合入大型重新命名，這種情況的成本依然很高。
 
-來自關於平行 worktree 之使用者報告的一個警示：當兄弟[工作階段](https://www.aihero.dev/ai-coding-dictionary/session)各自在自己的 worktree 中建構 ticket 時，合併回主幹最好由撰寫該變更的工作階段完成，因為它已經知道意圖。在最後將所有人的衝突批量交給一個 agent 會恰好丟棄本技能步驟 2 必須去重建的 [context](https://www.aihero.dev/ai-coding-dictionary/context)。
+來自使用者針對平行 worktree 的回報提出了一個告誡：當同層級的 [session](https://www.aihero.dev/ai-coding-dictionary/session) 各自在各自的工作樹中建置 ticket 時，合併回去的動作最好由撰寫該變更的 session 來執行，因為它才是已經知道意圖的一方。最後把所有人的衝突打包給單一 agent 處理，恰恰丟棄了本 skill 第 2 步必須回頭重新建構的[上下文 (context)](https://www.aihero.dev/ai-coding-dictionary/context)。
 
-**為什麼絕不使用 `--abort`？**
+**為什麼絕不 `--abort`？**
 
-放棄（Aborting）會丟棄解決衝突的工作，並在你下一次嘗試時將你帶回完全相同的衝突。本技能是為合併必定發生的情況撰寫的。如果你已經決定不應該進行合併，那是需要在呼叫之前做出的決定，而不是迴圈內部的分支。
+中止操作會丟棄已完成的解決工作，並在你下次嘗試時讓你回到完全相同的衝突。該 skill 是專為即將進行 merge 的情況所編寫的。如果你已決定不應該進行，那是呼叫前該做的決定，而非循環內部的分支。
 
-## 運作正常的指標
+## 若運作正常，會符合以下情況
 
-- Agent 在解決過程中會向你引述提交訊息、PR 或議題，而不僅僅是 diff 程式碼區塊。
-- 每個程式碼區塊最終都包含雙方的行為，或者帶有明確的註解說明丟棄了什麼內容及其原因。
-- 在結果中不會出現任何不在兩個分支上的內容。
-- 型別檢查、測試與格式化在提交*之前*被找到並執行為綠燈（通過），而不是在你注意到某些內容損壞之後。
-- 你最終處於乾淨的檔案樹上且操作已完成 — 包括多提交 rebase 中的每個剩餘提交。
+- Agent 在解決過程中向你引用 commit 訊息、PR 或 issue，而不僅僅是 diff hunk。
+- 每個 hunk 最終都具有雙方的行為，或者帶有明確的註記說明捨棄了什麼以及原因。
+- 結果中沒有出現任何兩個分支上原本都不存在的內容。
+- 型別檢查、測試和格式化在 commit *之前*就被找到並執行通過（綠燈），而非在你發現損毀之後。
+- 你的工作樹乾淨且操作已完成，包括多 commit rebase 中剩餘的每個 commit。
 
-## 適用位置
+## 它的定位
 
-一個隨時可用的獨立技能，不依賴於任何其他技能：它在 git 停頓時開始，並在檔案樹乾淨且已提交時結束。它唯一真正的鄰居是 [diagnosing-bugs](https://aihero.dev/skills-diagnosing-bugs)，後者在合併乾淨地解決但合併後的程式碼行為異常時接管 — 這是一個診斷問題，而不是衝突問題。它完全位於主要想法到交付流程之外，因此 [ask-matt](https://aihero.dev/skills-ask-matt) 是在其前後執行內容的地圖。
+一個隨時可用的獨立工具，不依賴任何其他 skill：它在 git 停滯時啟動，在工作樹乾淨且已 commit 時結束。它唯一的真實鄰近 skill 是 [diagnosing-bugs](https://aihero.dev/skills-diagnosing-bugs)，該 skill 在 merge 順利解決但合併後的程式碼表現異常時接手：這屬於診斷問題，而非衝突問題。它完全獨立於主要的從概念到交付流程，因此 [ask-matt](https://aihero.dev/skills-ask-matt) 是了解在其之前與之後執行什麼的地圖。

@@ -1,3 +1,3 @@
 interface:
   display_name: "Setup Pre-Commit"
-  short_description: "新增 Pre-commit 品質檢查機制"
+  short_description: "Add pre-commit quality checks"

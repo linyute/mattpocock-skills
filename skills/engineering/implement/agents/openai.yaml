@@ -1,5 +1,5 @@
 interface:
   display_name: "Implement"
-  short_description: "依據規格或 Ticket 進行開發建構"
+  short_description: "Build work from a spec or tickets"
 policy:
   allow_implicit_invocation: false

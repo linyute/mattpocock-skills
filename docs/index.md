@@ -6,6 +6,8 @@
 
 [![Live Skills.sh install count](https://www.skills.sh/b/mattpocock/skills)](https://www.skills.sh/mattpocock/skills)
 
+---
+
 ## 安裝
 
 ### 安裝 Skill
@@ -39,6 +41,8 @@ claude plugins install mattpocock-skills
 - Codex
 - Copilot
 - 25 個 Skill
+
+---
 
 ## Skill 清單
 

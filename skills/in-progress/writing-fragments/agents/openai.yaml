@@ -1,5 +1,5 @@
 interface:
   display_name: "Writing Fragments"
-  short_description: "開採原始寫作片段素材"
+  short_description: "Mine raw writing fragments"
 policy:
   allow_implicit_invocation: false

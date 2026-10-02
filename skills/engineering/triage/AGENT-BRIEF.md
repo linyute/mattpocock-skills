@@ -1,40 +1,40 @@
 # 撰寫 Agent 簡報
 
-Agent 簡報是當 GitHub 議題或 PR 移動至 `ready-for-agent` 時發布的結構化留言。它是離線 Agent 將展開工作的權威規格。原始內文與討論是上下文 — Agent 簡報則是合約。
+Agent 簡報是在 GitHub issue 或 PR 轉移至 `ready-for-agent` 時所發布的結構化留言。它是離線 Agent 工作時所依據的權威規格說明。原始內文和討論僅是情境脈絡：Agent 簡報才是真正的契約。
 
-簡報說明 **Agent 應該做什麼**，延伸至兩個表面：對於議題，那是從無到有建構變更；對於 PR，那是*對現有差異*殘留要發揮的事物 — 完成它、補平缺口、解決審查意見。無論哪種方式原則相同；下方的 PR 範例展示了差異。
+此簡報陳述了 **Agent 應該做什麼**，這延伸至兩個層面：對於 issue 而言，這是從無到有建構變更；對於 PR 而言，這是*針對現有差異*還需要完成的工作：完成它、消除差距、處理審查重點。兩種情況下的原則相同；下方的 PR 範例展示了其中的差異。
 
 ## 原則
 
-### 耐用性高於精準度
+### 耐久性重於精確性
 
-議題可能會在 `ready-for-agent` 中停留數天或數週。程式碼庫在此期間會發生變更。撰寫簡報使其即使在檔案被重命名、移動或重構時也能保持有用。
+此 issue 可能會在 `ready-for-agent` 狀態停留數天或數週。與此同時，程式碼庫將會變更。撰寫簡報時應使其在檔案重命名、移動或重構時依然有用。
 
-- **要**描述介面、型別與行為合約
-- **要**命名特定型別、函式簽名或設定形狀，以便 Agent 尋找或修改
-- **不要**引用檔案路徑 — 它們會過時
-- **不要**引用行號
-- **不要**假設目前的實作結構將保持不變
+- **要**描述介面、型別與行為契約
+- **要**指明 Agent 應尋找或修改的特定型別、函式簽名或設定結構
+- **不要**參照檔案路徑：它們會過期
+- **不要**參照行號
+- **不要**假設當前的實作結構將維持不變
 
 ### 行為導向，而非程序導向
 
-描述系統應該做**什麼**，而不是**如何**實作它。Agent 將重新探索程式碼庫並做出自己的實作決策。
+描述系統應該做**什麼**，而非**如何**實作它。Agent 將會重新探索程式碼庫並做出自己的實作決策。
 
-- **良好：**「`SkillConfig` 型別應該接受一個型別為 `CronExpression` 的可選 `schedule` 欄位」
-- **糟糕：**「開啟 src/types/skill.ts 並在第 42 行新增 schedule 欄位」
-- **良好：**「當使用者在沒有引數的情況下執行 `/triage` 時，他們應該看到需要關注議題的摘要」
-- **糟糕：**「在主處理常式函式中新增 switch 語句」
+- **良好：**「`SkillConfig` 型別應接受 `CronExpression` 型別的選用 `schedule` 欄位」
+- **不良：**「開啟 src/types/skill.ts 並在第 42 行新增一個 schedule 欄位」
+- **良好：**「當使用者在沒有引數的情況下執行 `/triage` 時，他們應該看到需要注意的 issue 摘要」
+- **不良：**「在主要處理常式函式中新增一個 switch 陳述式」
 
-### 完整的驗收標準
+### 完整的驗收準則
 
-Agent 需要知道何時完成。每個 Agent 簡報都必須具備具體、可測試的驗收標準。每個標準應該可以獨立驗證。
+Agent 需要知道何時算完成。每份 Agent 簡報都必須具有具體、可測試的驗收準則。每個準則應能獨立驗證。
 
-- **良好：**「執行 `gh issue list --label needs-triage` 會傳回已經通過初始分類的議題」
-- **糟糕：**「分揀應該正確運作」
+- **良好：**「執行 `gh issue list --label needs-triage` 會傳回已通過初始分類的 issue」
+- **不良：**「分流應該正常運作」
 
-### 明確的範疇邊界
+### 明確的範圍邊界
 
-說明範疇之外的內容。這可以防止 Agent 畫蛇添足或對鄰近功能做出假設。
+陳述哪些內容超出範圍。這可以防止 Agent 畫蛇添足或對相鄰功能做出假設。
 
 ## 範本
 
@@ -42,166 +42,166 @@ Agent 需要知道何時完成。每個 Agent 簡報都必須具備具體、可�
 ## Agent Brief
 
 **Category:** bug / enhancement
-**Summary:** 需要發生的單行說明
+**Summary:** one-line description of what needs to happen
 
 **Current behavior:**
-描述現在發生的情況。對於 Bug，這是損壞的行為。
-對於增強功能，這是該功能建立在其上的現狀。
+Describe what happens now. For bugs, this is the broken behavior.
+For enhancements, this is the status quo the feature builds on.
 
 **Desired behavior:**
-描述 Agent 工作完成後應該發生的情況。
-對邊界情況與錯誤條件保持具體。
+Describe what should happen after the agent's work is complete.
+Be specific about edge cases and error conditions.
 
 **Key interfaces:**
-- `TypeName` — 需要改變什麼以及原因
-- `functionName()` 傳回型別 — 目前傳回什麼 vs 應該傳回什麼
-- 設定形狀 — 所需的任何新設定選項
+- `TypeName`: what needs to change and why
+- `functionName()` return type: what it currently returns vs what it should return
+- Config shape: any new configuration options needed
 
 **Acceptance criteria:**
-- [ ] 具體、可測試的標準 1
-- [ ] 具體、可測試的標準 2
-- [ ] 具體、可測試的標準 3
+- [ ] Specific, testable criterion 1
+- [ ] Specific, testable criterion 2
+- [ ] Specific, testable criterion 3
 
 **Out of scope:**
-- 在此議題中**不**應該改變或處理的事物
-- 看似相關但獨立的鄰近功能
+- Thing that should NOT be changed or addressed in this issue
+- Adjacent feature that might seem related but is separate
 ```
 
 ## 範例
 
-### 良好的 Agent 簡報（Bug）
+### 良好的 Agent 簡報 (bug)
 
 ```markdown
 ## Agent Brief
 
 **Category:** bug
-**Summary:** 技能描述擷斷會截斷字詞中間，產生損壞的輸出
+**Summary:** Skill description truncation drops mid-word, producing broken output
 
 **Current behavior:**
-當技能描述超過 1024 個字元時，無論單字邊界為何，它都會在剛好
-1024 個字元處被擷斷。這會產生在單字中間結束的描述
-（例如 "Use when the user wants to confi"）。
+When a skill description exceeds 1024 characters, it is truncated at exactly
+1024 characters regardless of word boundaries. This produces descriptions
+that end mid-word (e.g. "Use when the user wants to confi").
 
 **Desired behavior:**
-擷斷應該在 1024 個字元前的最後一個單字邊界處中斷
-並附加 "..." 以表示擷斷。
+Truncation should break at the last word boundary before 1024 characters
+and append "..." to indicate truncation.
 
 **Key interfaces:**
-- `SkillMetadata` 型別的 `description` 欄位 — 不需要型別變更，
-  但填入它的驗證/處理邏輯需要尊重
-  單字邊界
-- 任何讀取 SKILL.md frontmatter 並擷取描述的函式
+- The `SkillMetadata` type's `description` field: no type change needed,
+  but the validation/processing logic that populates it needs to respect
+  word boundaries
+- Any function that reads SKILL.md frontmatter and extracts the description
 
 **Acceptance criteria:**
-- [ ] 低於 1024 字元的描述保持不變
-- [ ] 超過 1024 字元的描述在 1024 字元前的最後一個單字邊界處被擷斷
-      1024 字元之前
-- [ ] 擷斷的描述以 "..." 結尾
-- [ ] 包含 "..." 的總長度不超過 1024 個字元
+- [ ] Descriptions under 1024 chars are unchanged
+- [ ] Descriptions over 1024 chars are truncated at the last word boundary
+      before 1024 chars
+- [ ] Truncated descriptions end with "..."
+- [ ] The total length including "..." does not exceed 1024 chars
 
 **Out of scope:**
-- 改變 1024 字元限制本身
-- 多行描述支援
+- Changing the 1024 char limit itself
+- Multi-line description support
 ```
 
-### 良好的 Agent 簡報（增強功能）
+### 良好的 Agent 簡報 (enhancement)
 
 ```markdown
 ## Agent Brief
 
 **Category:** enhancement
-**Summary:** 新增 `.out-of-scope/` 目錄支援，用於追蹤被拒絕的功能請求
+**Summary:** Add `.out-of-scope/` directory support for tracking rejected feature requests
 
 **Current behavior:**
-當功能請求被拒絕時，議題會帶有 `wontfix` 標籤並加上留言關閉。
-對於決策或推理沒有持久記錄。
-未來的類似請求需要維護者回憶或搜尋
-先前的討論。
+When a feature request is rejected, the issue is closed with a `wontfix` label
+and a comment. There is no persistent record of the decision or reasoning.
+Future similar requests require the maintainer to recall or search for the
+prior discussion.
 
 **Desired behavior:**
-被拒絕的功能請求應記載在 `.out-of-scope/<concept>.md`
-檔案中，擷取決策、推理以及連至請求該功能的所有議題的連結。
-當分揀新議題時，這些檔案應該被
-檢查是否有符合項。
+Rejected feature requests should be documented in `.out-of-scope/<concept>.md`
+files that capture the decision, reasoning, and links to all issues that
+requested the feature. When triaging new issues, these files should be
+checked for matches.
 
 **Key interfaces:**
-- `.out-of-scope/` 中的 Markdown 檔案格式 — 每個檔案都應該有一個
-  `# Concept Name` 標題、`**Decision:**` 行、`**Reason:**` 行，
-  以及帶有議題連結的 `**Prior requests:**` 清單
-- 分揀工作流程應該儘早讀取所有 `.out-of-scope/*.md` 檔案
-  並根據概念相似度比對傳入的議題與這些檔案
+- Markdown file format in `.out-of-scope/`: each file should have a
+  `# Concept Name` heading, a `**Decision:**` line, a `**Reason:**` line,
+  and a `**Prior requests:**` list with issue links
+- The triage workflow should read all `.out-of-scope/*.md` files early
+  and match incoming issues against them by concept similarity
 
 **Acceptance criteria:**
-- [ ] 將功能關閉為 wontfix 會建立/更新 `.out-of-scope/` 中的檔案
-- [ ] 該檔案包含決策、推理以及連至關閉議題的連結
-- [ ] 如果匹配的 `.out-of-scope/` 檔案已存在，新議題會
-      附加至其 "Prior requests" 清單，而非建立重複檔案
-- [ ] 在分揀期間，當新議題符合先前的拒絕時，會檢查並浮現現有的 `.out-of-scope/` 檔案
+- [ ] Closing a feature as wontfix creates/updates a file in `.out-of-scope/`
+- [ ] The file includes the decision, reasoning, and link to the closed issue
+- [ ] If a matching `.out-of-scope/` file already exists, the new issue is
+      appended to its "Prior requests" list rather than creating a duplicate
+- [ ] During triage, existing `.out-of-scope/` files are checked and surfaced
+      when a new issue matches a prior rejection
 
 **Out of scope:**
-- 自動化匹配（由人類確認匹配）
-- 重新開啟先前被拒絕的功能
-- Bug 報告（僅功能拒絕進入 `.out-of-scope/`）
+- Automated matching (human confirms the match)
+- Reopening previously rejected features
+- Bug reports (only enhancement rejections go to `.out-of-scope/`)
 ```
 
-### 良好的 Agent 簡報（PR）
+### 良好的 Agent 簡報 (PR)
 
-對於 PR，「Current behavior」描述了差異的狀態，且簡報要求 Agent 完成或修復它，而不是從頭建構。
+對於 PR，「目前行為」描述了差異的狀態，簡報要求 Agent 完成或修復它，而非從頭建構。
 
 ```markdown
 ## Agent Brief
 
 **Category:** enhancement
-**Summary:** 完成貢獻者針對 `triage list` 的 `--json` 輸出旗標
+**Summary:** Finish the contributor's `--json` output flag for `triage list`
 
 **Current behavior:**
-該 PR 新增了一個 `--json` 旗標，將議題清單序列化為 JSON。理想
-路徑可運作，且差異符合專案的命令結構。殘留兩個缺口：
-錯誤仍列印為人類文字（非 JSON），且新旗標沒有
-測試覆蓋率。
+The PR adds a `--json` flag that serializes the issue list to JSON. The happy
+path works and the diff matches the project's command structure. Two gaps
+remain: errors are still printed as human text (not JSON), and the new flag has
+no test coverage.
 
 **Desired behavior:**
-使用 `--json` 時，所有輸出 — 包含錯誤 — 在 stdout 上都是格式良好的 JSON，
-且命令的結束碼保持不變。當缺乏旗標時，現有的
-人類可讀輸出保持原封不動。
+With `--json`, all output (including errors) is well-formed JSON on stdout,
+and the command's exit codes are unchanged. The existing human-readable output
+is untouched when the flag is absent.
 
 **Key interfaces:**
-- 命令的錯誤路徑在 `--json` 下應發出 `{ "error": string }`
-  而不是純文字錯誤
-- 重用 PR 已經新增的現有序列化器；不要引入第二個
+- The command's error path should emit `{ "error": string }` under `--json`
+  instead of the plain-text error
+- Reuse the existing serializer the PR already added; don't introduce a second
 
 **Acceptance criteria:**
-- [ ] `triage list --json` 針對成功與錯誤情況皆發出有效的 JSON
-- [ ] 結束碼與非 JSON 命令相符
-- [ ] 測試覆蓋 `--json` 成功輸出與一個錯誤情況
-- [ ] 預設（非 JSON）輸出位元組對位元組保持不變
+- [ ] `triage list --json` emits valid JSON for both success and error cases
+- [ ] Exit codes match the non-JSON command
+- [ ] A test covers the `--json` success output and one error case
+- [ ] Default (non-JSON) output is byte-for-byte unchanged
 
 **Out of scope:**
-- 將 `--json` 新增至任何其他命令
-- 改變 PR 已經定義的成功負載的 JSON 形狀
+- Adding `--json` to any other command
+- Changing the JSON shape of the success payload the PR already defined
 ```
 
-### 糟糕的 Agent 簡報
+### 不良的 Agent 簡報
 
 ```markdown
 ## Agent Brief
 
-**Summary:** 修復分揀 Bug
+**Summary:** Fix the triage bug
 
 **What to do:**
-分揀那邊損壞了。看看主要檔案並修復它。
-大約 150 行附近的函式有問題。
+The triage thing is broken. Look at the main file and fix it.
+The function around line 150 has the issue.
 
 **Files to change:**
-- src/triage/handler.ts (第 150 行)
-- src/types.ts (第 42 行)
+- src/triage/handler.ts (line 150)
+- src/types.ts (line 42)
 ```
 
-這很糟糕，因為：
-
+這樣是不良的，因為：
 - 沒有類別
-- 描述模糊（「分揀那邊損壞了」）
-- 引用了會過時的檔案路徑與行號
-- 沒有驗收標準
-- 沒有範疇邊界
-- 沒有當前 vs 期望行為的描述
+- 描述模糊（「分流的東西壞了」）
+- 參照將會過期的檔案路徑和行號
+- 沒有驗收準則
+- 沒有範圍邊界
+- 沒有目前行為與預期行為的說明

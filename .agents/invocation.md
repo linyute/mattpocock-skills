@@ -1,26 +1,26 @@
-# 模型呼叫 vs 使用者呼叫
+# 模型呼叫與使用者呼叫
 
-此儲存庫中的每個 `SKILL.md` 都是一個技能。將它們劃分的一個維度是**呼叫** — 誰可以存取它：
+此儲存庫中的每個 `SKILL.md` 都是一項技能。區分它們的唯一維度是**呼叫**，也就是誰可以取用它：
 
-- **使用者呼叫** — **僅能由親自輸入其名稱的人類**存取。在 Frontmatter 中設定 `disable-model-invocation: true` (Claude Code)，並在 `agents/openai.yaml` 中設定 `policy.allow_implicit_invocation: false` (Codex)。其 `description` 是**面向人類的**：由瀏覽斜線命令的人所閱讀的單行摘要。請去除觸發條件清單（「當使用者說出…時使用」）。
-- **模型呼叫** — 可由**模型或使用者**存取。預設情況：省略 `disable-model-invocation` 以及 `agents/openai.yaml` 中的 `policy` 區塊。其 `description` 是**面向模型的**，並保留豐富的觸發詞彙表達（「當使用者想要…、提及…、請求…時使用」），以便觸發自動呼叫。測試一個技能是否應該保持為模型呼叫的標準是：_模型是否能自主且有效地存取此技能？_（重複使用是擷取出技能的原因，而非測試標準。）
+- **使用者呼叫**（User-invoked）：**僅能由人員輸入其名稱**來取用。在 frontmatter 中設定 `disable-model-invocation: true`（Claude Code），並在 `agents/openai.yaml` 中設定 `policy.allow_implicit_invocation: false`（Codex）。其 `description` 是**面向人員**的：瀏覽斜線指令的人員所閱讀的單行摘要。請移除觸發清單（「當使用者說…時使用」）。
+- **模型呼叫**（Model-invoked）：可由**模型或使用者**取用。預設情況：省略 `disable-model-invocation` 以及 `agents/openai.yaml` 中的 `policy` 區塊。其 `description` 是**面向模型**的，並保留豐富的觸發詞句（「當使用者想要…、提及…、要求…時使用」），以便觸發自動呼叫。判斷一項技能是否應保持模型呼叫的測試標準是：_模型能否自主且有效地取用它？_（重用是提煉技能的原因，而非測試標準。）
 
-每個 Harness 都會以其自身的方式將使用者呼叫的技能排除在模型的存取範圍之外，因此除了人類之外沒有其他事物可以觸發它 — 沒有其他技能可以觸發。使用者呼叫的技能可以呼叫模型呼叫的技能，但絕不能存取另一個使用者呼叫的技能。
+每個環境都以各自的方式將使用者呼叫的技能排除在模型可取用的範圍之外，因此除了人員之外，沒有任何東西可以觸發它：其他技能都無法觸發。使用者呼叫的技能可以呼叫模型呼叫的技能，但絕不能取用另一個使用者呼叫的技能。
 
-每個技能在其 `SKILL.md` 旁也帶有一個 `agents/openai.yaml`。它持有 Codex UI 中繼資料 — 適用於技能選擇器的 `interface.display_name` 和 `interface.short_description` — 以及針對使用者呼叫技能的 `policy.allow_implicit_invocation: false`（與 `disable-model-invocation` 配對）。請保持兩者同步：一個技能在兩個 Harness 中要麼都是使用者呼叫，要麼都不是。
+每項技能的 `SKILL.md` 旁邊也帶有一個 `agents/openai.yaml`。它包含 Codex UI 的 Metadata：用於技能選擇器的 `interface.display_name` 和 `interface.short_description`，以及對於使用者呼叫的技能，與 `disable-model-invocation` 配對的 `policy.allow_implicit_invocation: false`。請保持兩者同步：一項技能在兩個環境中要麼都是使用者呼叫，要麼兩者都不是。
 
-分類 `README.md` 和最上層的 `README.md` 將條目分組為**使用者呼叫**和**模型呼叫**。
+分桶的 `README.md` 和最頂層的 `README.md` 會將項目分組為**使用者呼叫**與**模型呼叫**。
 
-## 它們之間的相依性
+## 它們之間的依賴關係
 
-相依性應以明確指示來表達：使用指定的技能**呼叫 Skill 工具**（`Call the Skill tool with "grilling"`），而不是使用深層的 `../other-skill/FILE.md` 交叉參照，也不是留下讓模型自行解讀的單獨 `/skill` 式提及。指名該工具才能觸發它：大多數 Harness 都會將技能呼叫公開為模型可呼叫的工具，而明確寫出這一點，比在文字中放入 `/name` 並希望它被解讀為命令，有更高的命中率。省略開頭的 `/` 也能讓這項慣例保持與 Harness 無關，而不是相反——單獨的技能名稱不會預設它所屬的是哪個 Harness 的觸發語法。共用的參考文件應放在擁有它們的技能內；其他技能應透過使用該技能呼叫 Skill 工具來取得這些內容，而不是跨資料夾建立連結。
+依賴關係表示為明確指示以指定的技能**呼叫 Skill 工具**（`使用 "grilling" 呼叫 Skill 工具`），而不是深層的 `../other-skill/FILE.md` 交叉引用，也不是留給模型自行解讀的單純 `/skill` 風格提及。指名工具才是觸發它的關鍵：大多數環境將技能呼叫公開為模型呼叫的工具，將其明確寫出比在內文中留下 `/name` 並希望它被視為指令具有更高的命中率。去掉前導的 `/` 也能保持環境中立：單獨的技能名稱不帶有關於它屬於哪個環境觸發語法的假設。共享的參考文件存放在擁有它們的技能內部；其他技能透過使用它呼叫 Skill 工具來取用該資料，而不是透過跨資料夾連結。
 
-這裡指的是**操作性**指示——技能自身的步驟要求代理程式立即執行另一個技能。僅為了讓人類選擇而列出技能名稱的路由文字（`ask-matt`、各分類的 `README.md`）並不是在進行呼叫，因此仍將 `/skill` 式名稱保留為純粹的標籤。
+這攸關**操作性**（operative）指示：技能本身的步驟告訴代理現在去執行另一項技能。僅列出技能名稱以供人員挑選的引導敘述（`ask-matt`、分桶的 `README.md`）並沒有呼叫任何內容，因此它保留 `/skill` 風格的名稱作為純文字標籤。
 
-Skill 工具每次呼叫只接受一個技能。需要兩個技能的步驟應進行兩次呼叫，而不是在一次呼叫中傳入兩個名稱——請明確寫出這一點（`Call the Skill tool twice, for "grilling" and "domain-modeling"`），不要寫成「以 X 和 Y 呼叫它」，因為那會被理解為單次呼叫同時接受兩者。
+Skill 工具每次呼叫僅接受一項技能。需要兩項技能的步驟是兩次呼叫，而不是一次包含兩個名稱的呼叫：請明確說明（`呼叫 Skill 工具兩次，分別針對 "grilling" 與 "domain-modeling"`），而不是「使用 X 和 Y 呼叫它」，這會被解讀為同時接受兩者的單次呼叫。
 
-這套慣例僅適用於指定的技能是**模型呼叫**的情況。使用者呼叫的技能永遠無法透過這種方式觸達，沒有例外——依據上述不變條件，任何其他技能都不能呼叫它，包括將其名稱提供給 Skill 工具。當某個步驟的前置條件是使用者呼叫的技能（例如 `setup-matt-pocock-skills`）時，應將其表述為供人類採取行動的指示——「告訴使用者執行 `/setup-matt-pocock-skills`」——絕不要表述為 Skill 工具呼叫。
+整個慣例僅在指定的技能是**模型呼叫**時才成立。使用者呼叫的技能絕對無法透過這種方式取用：根據上述不變性，沒有其他技能可以呼叫它，包括在 Skill 工具中指定其名稱。當步驟的先決條件是使用者呼叫的技能時（例如 `setup-matt-pocock-skills`），請將其表述為供人員執行的指示：「告訴使用者執行 `/setup-matt-pocock-skills`」，絕不要作為 Skill 工具呼叫。
 
-## 被動 vs 主動領域工作
+## 被動與主動領域工作
 
-僅僅為了詞彙而_閱讀_ `CONTEXT.md` 只是單行的散文指標，而非 `domain-modeling` 技能。只有主動建構/精煉規範（挑戰術語、邊角案例情境、撰寫 ADR、內聯更新 `CONTEXT.md`）才是 `domain-modeling`。
+僅為獲取詞彙而_閱讀_ `GLOSSARY.md` 只是單行的內文指引，而不是 `domain-modeling` 技能。只有主動的建構/精煉規範（質疑術語、極端情況情境、撰寫 ADR、行內更新 `GLOSSARY.md`）才是 `domain-modeling`。

@@ -1,5 +1,5 @@
 interface:
   display_name: "Writing Shape"
-  short_description: "將原始素材形塑為完整文章"
+  short_description: "Shape raw material into an article"
 policy:
   allow_implicit_invocation: false

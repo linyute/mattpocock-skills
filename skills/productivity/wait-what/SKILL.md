@@ -1,7 +1,7 @@
 ---
 name: 'wait-what'
-description: '停止。上一條訊息無法理解 — 重新進行推介。'
+description: '等等。剛才那則訊息無法理解：請重新陳述。'
 disable-model-invocation: true
 ---
 
-等等 — 我不理解你在此處到達了哪裡。重新推介該內容：給我一點點上下文，以 ASD-STE100 簡化技術英語交談，並使用來自 `CONTEXT.md` 的無所不在語言（ubiquitous language）。
+等等，我不明白您進行到哪裡了。請重新陳述：給我一點背景資訊，使用 ASD-STE100 簡化技術英語交談，並使用來自 `GLOSSARY.md` 的通用語言（如果儲存庫有多個，請依循 `GLOSSARY-MAP.md` 找到正確的一個）。
