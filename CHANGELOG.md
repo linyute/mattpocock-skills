@@ -1,8 +1,68 @@
 # mattpocock-skills
 
+## 1.3.1
+
+### 修補變更
+
+- [#1121](https://github.com/mattpocock/skills/pull/1121) [`c5b9869`](https://github.com/mattpocock/skills/commit/c5b98691982c4f0d3a5e40ab09566b3b84721e00) 感謝 [@mattpocock](https://github.com/mattpocock)！`ask-matt` 不再表示 `diagnosing-bugs` 會在事後檢討時交接給 `improve-codebase-architecture`，因為這個步驟已移除。現在修正完成後，它會引導你前往 `/retro`，詢問哪些措施原本可以避免這個錯誤；若發現缺少接縫，則引導你前往 `/improve-codebase-architecture`。`diagnosing-bugs` 文件頁面也移除了相同的過時交接說明。感謝 @Ygilany 發現這個問題（[#1117](https://github.com/mattpocock/skills/issues/1117)）。
+
+## 1.3.0
+
+### 次要變更
+
+- [#1120](https://github.com/mattpocock/skills/pull/1120) [`2aecca1`](https://github.com/mattpocock/skills/commit/2aecca12ea9ff047f76c8178cb64dfeafd192abe) 感謝 [@mattpocock](https://github.com/mattpocock)！將 **`implement-spec`** 升級至 **Engineering** 分類，讓它納入 Claude Code 外掛程式、擁有文件頁面，並由 `ask-matt` 路由為逐張 ticket 執行 `implement` 的平行替代方案。
+
+  `implement-spec`（使用者呼叫）會在單次執行中實作整份規格。它會將 tickets 視為**任務圖**，在各自的 worktree 中，針對已就緒的**前沿**執行實作者子代理人，並將所有變更整合至同一個**整合分支**，最後以 `code-review` 收尾。升級前所做的調整如下：
+
+  - 目標改為整合分支，而非 PR。只有在 issue 追蹤器透過 PR 關閉工作，或你要求建立 PR 時，才會開啟草稿 PR；而且必須等到首次合併後才會建立（尚未比 main 多出任何提交的分支無法建立 PR）。若沒有 PR，tickets 會依照追蹤器關閉工作的方式解決。
+  - 現在它會像其他同系列技能一樣參照 issue 追蹤器。若尚未提供追蹤器設定，它會請你執行 `/setup-matt-pocock-skills`，而不會默默預設使用 `gh`。
+  - 每位實作者都會確認自己的 worktree 以整合分支為基礎，使用 `tdd` 建構 ticket，並在回報完成前將整合分支的最新進度合併至自己的分支，確保每次合併都是快轉合併。
+
+- [#1120](https://github.com/mattpocock/skills/pull/1120) [`2aecca1`](https://github.com/mattpocock/skills/commit/2aecca12ea9ff047f76c8178cb64dfeafd192abe) 感謝 [@mattpocock](https://github.com/mattpocock)！將 **`pr`** 升級至 **Engineering** 分類，讓它納入 Claude Code 外掛程式、擁有文件頁面，並由 `ask-matt` 路由為 PR 內文的收尾步驟。
+
+  `pr`（模型呼叫）定義了 pull request 內文應有的形式：以能清楚呈現變更的精簡視覺摘要開場（偽程式碼、呼叫樹、檔案樹、Mermaid 圖或差異），接著提供變更有效的前後證據，並評估合併風險（單向或雙向門，以及影響範圍）。摘要視覺呈現改編自 Dex Horthy 的 `show-me`，並已在技能的 `CREDITS.md` 中註明來源。
+
+- [#1120](https://github.com/mattpocock/skills/pull/1120) [`2aecca1`](https://github.com/mattpocock/skills/commit/2aecca12ea9ff047f76c8178cb64dfeafd192abe) 感謝 [@mattpocock](https://github.com/mattpocock)！將 **`retro`** 升級至 **Engineering** 分類，讓它納入 Claude Code 外掛程式、擁有文件頁面，並由 `ask-matt` 路由為主流程中 `code-review` 之後的最後一個步驟。
+
+  `retro`（使用者呼叫）回顧程式碼工作階段，並建議調整代理人的環境，而不是程式碼本身，例如導覽指引、自動化檢查、程式碼標準、引導檔案、工具使用效率及資訊存取方式。它會先分類每項程式碼標準相關發現：機械式違規應加入確定性的檢查（例如 linter 規則、pre-commit hook 或 CI 工作），而 `CODING_STANDARDS.md` 則保留給真正需要判斷的事項。儲存庫完全沒有防護措施，本身也是一項發現。
+
+- [#1120](https://github.com/mattpocock/skills/pull/1120) [`daa01d8`](https://github.com/mattpocock/skills/commit/daa01d8aa68ad5c61b68970ec2018d0ce9567be6) 感謝 [@mattpocock](https://github.com/mattpocock)！移除 **`resolving-merge-conflicts`** 技能。它已不再需要，也沒有替代技能：代理人可以在沒有專用技能的情況下處理進行中的 merge 或 rebase 衝突。此技能已從 Claude Code 外掛程式、README 與 `ask-matt` 路由器中移除。其文件頁面 `https://aihero.dev/skills-resolving-merge-conflicts` 仍會保留，並標示為已封存。
+
+- [#1120](https://github.com/mattpocock/skills/pull/1120) [`006a52b`](https://github.com/mattpocock/skills/commit/006a52be23e0178375e083e30535fa8224471f3e) 感謝 [@mattpocock](https://github.com/mattpocock)！將技能讀寫領域文件時使用的 `CONTEXT.md`/`CONTEXT-MAP.md` 慣例，全面改名為 `GLOSSARY.md`/`GLOSSARY-MAP.md`。受影響的技能包括 `domain-modeling`、`grill-with-docs`、`improve-codebase-architecture`、`setup-matt-pocock-skills`、`triage`、`tdd`、`diagnosing-bugs`、`ask-matt`、`codebase-design`、`wait-what` 與 `pr`，此外也更新了文件頁面及本儲存庫根目錄的 glossary。
+
+  如果你有這次變更之前建立的 `CONTEXT.md`（或 `CONTEXT-MAP.md`），請使用 `git mv` 將它改為新名稱：之後技能只會尋找 `GLOSSARY.md`/`GLOSSARY-MAP.md`。
+
+### 修補變更
+
+- [#848](https://github.com/mattpocock/skills/pull/848) [`f02e2ed`](https://github.com/mattpocock/skills/commit/f02e2ed3624d031272f8547742d23bf6bca8b072) 感謝 [@mattpocock](https://github.com/mattpocock)！`domain-modeling` 現在會在討論程式碼庫術語，以及直接撰寫或編輯 GLOSSARY.md 或 ADR 時觸發，取代原本較狹義的「釐清領域術語或通用語言」與「記錄架構決策」描述。也移除了「其他技能需要維護領域模型」這項但書，因為觸發技能時應由該技能明確說明這項工作。
+
+- [#911](https://github.com/mattpocock/skills/pull/911) [`4f28947`](https://github.com/mattpocock/skills/commit/4f289474bad013fe2be8f8769d733f59d9103d6b) 感謝 [@mattpocock](https://github.com/mattpocock)！為 `to-spec`、`code-review`、`setup-matt-pocock-skills`、`writing-fragments`、`writing-shape` 與 `wait-what` 的 front matter 中 `description` 欄位加上引號。[#905](https://github.com/mattpocock/skills/issues/905) 移除 em dash 時遺留的未加引號冒號與空格，使每個區塊都成為無效 YAML，導致 `skills.sh` 在探索時略過這六項技能，因此無法透過 `npx skills` 列出或安裝。
+
+- [#917](https://github.com/mattpocock/skills/pull/917) [`85f83d3`](https://github.com/mattpocock/skills/commit/85f83d3fde1d3a90d5c9a657f6998c79a6c37308) 感謝 [@mattpocock](https://github.com/mattpocock)！`grilling`：更新每輪範本，讓連續問題之間以水平分隔線（`---`）分開，避免文字連在一起。
+
+- [#879](https://github.com/mattpocock/skills/pull/879) [`d419977`](https://github.com/mattpocock/skills/commit/d419977fe07d9e1607d3523f3579310bbb076b93) 感謝 [@mattpocock](https://github.com/mattpocock)！`grilling`：從 `SKILL.md` 移除 em dash，改用冒號與分號，讓指示以一般文字呈現。
+
+- [#905](https://github.com/mattpocock/skills/pull/905) [`e6e9577`](https://github.com/mattpocock/skills/commit/e6e957797d8cceb5b351c0dc840369523f9fb8fb) 感謝 [@mattpocock](https://github.com/mattpocock)！從儲存庫所有敘述文字中移除 em dash（包括文件、`SKILL.md` 檔案、ADR、`README.md`、指令稿及 JSON/YAML Metadata），逐句改寫，使用逗號、冒號、句號、括號或連接詞，而非機械式替換字元。`CLAUDE.md`/`AGENTS.md` 現在也要求不要重新引入 em dash。
+
+- [#878](https://github.com/mattpocock/skills/pull/878) [`e3e547b`](https://github.com/mattpocock/skills/commit/e3e547b57d549110a0aa6ff40fd7b871c01c76c9) 感謝 [@mattpocock](https://github.com/mattpocock)！在 `code-review`、`diagnosing-bugs`、`grill-with-docs`、`grill-me`、`improve-codebase-architecture`、`tdd`、`to-spec`、`to-tickets`、`triage` 與 `wayfinder` 中，統一跨技能呼叫方式，明確指示「呼叫 Skill 工具」，不再只使用 `/skill` 形式的文字描述。
+
+  - 只在敘述中提到另一項技能（例如「執行 `/grilling` 技能」），並不能可靠地讓該技能載入。這個已記錄的問題正是 `grill-with-docs` 最常見回報的根源。直接指出工具（`Call the Skill tool with "grilling"`）是為了提高成功率。移除開頭的 `/` 也讓指示能跨執行環境使用，不再假設採用 Claude Code 的觸發語法。
+  - 需要多項技能的步驟，現在會明確寫成多次呼叫（「呼叫 Skill 工具兩次，分別使用 `grilling` 與 `domain-modeling`」），而不是一次呼叫帶入兩個名稱。
+  - 在 `.agents/invocation.md` 中記錄這項慣例，供未來技能遵循。
+
+- [#880](https://github.com/mattpocock/skills/pull/880) [`1dab982`](https://github.com/mattpocock/skills/commit/1dab98299c3b81f560026c01b7ebf55ed5d91373) 感謝 [@mattpocock](https://github.com/mattpocock)！避免技能試圖透過 Skill 工具呼叫使用者呼叫的技能：修正 `.agents/invocation.md`、`to-spec`、`wayfinder`、`to-tickets`、`triage`、`code-review` 與 `diagnosing-bugs` 中違反「其他技能不得呼叫此技能」原則的跨技能參照。
+
+  - `to-spec`、`wayfinder`、`to-tickets`、`triage` 與 `code-review` 原本都帶有「若尚未設定，請執行 `/setup-matt-pocock-skills`」的前置條件。PR [#878](https://github.com/mattpocock/skills/issues/878) 將其改寫為字面指示 `Call the Skill tool with "setup-matt-pocock-skills"`。但 `setup-matt-pocock-skills` 是使用者呼叫的技能，因此無論使用者呼叫或模型呼叫的技能都不能呼叫它。現在已將這五處改寫為請代理人告知使用者自行執行。
+  - `diagnosing-bugs` 的第 6 階段原本也會在事後檢討時交接給 `improve-codebase-architecture`，但該技能同樣是使用者呼叫的。這項錯誤呼叫發生於自主執行且經常無人監督的修正流程，當時沒有人能介入處理。由於實務上很少觸發，因此直接移除交接，而不是只調整措辭。第 6 階段現在僅包含「清理」，機械式檢查清單保持不變。
+  - 在 `.agents/invocation.md` 的「技能之間的相依關係」章節新增例外說明：只有目標技能為模型呼叫時，才能使用 `Call the Skill tool with "name"` 慣例。PR [#878](https://github.com/mattpocock/skills/issues/878) 新增該章節時，沒有將此慣例與上方八行所述的使用者呼叫和模型呼叫不變條件整合，這個落差正是問題擴散至六個呼叫位置，而非僅一處的主要原因。
+
+  修正 [#453](https://github.com/mattpocock/skills/issues/453)。
+
+- [#904](https://github.com/mattpocock/skills/pull/904) [`594f0f8`](https://github.com/mattpocock/skills/commit/594f0f83188921a60d45d63d6cdac509de20df2c) 感謝 [@mattpocock](https://github.com/mattpocock)！`wait-what`：當儲存庫透過 `GLOSSARY-MAP.md` 索引多個脈絡時，依照索引找到正確的 `GLOSSARY.md`，而非只使用根目錄的單一 `GLOSSARY.md`。
+
 ## 1.2.3
 
-### Patch Changes
+### 修補變更
 
 - [#779](https://github.com/mattpocock/skills/pull/779) [`efce423`](https://github.com/mattpocock/skills/commit/efce423018fc6468a3239621f1c1bcaacc723801) 感謝 [@mattpocock](https://github.com/mattpocock)！ - 使 `diagnosing-bugs` 隱蔽（redact）機密。
 
@@ -16,7 +76,7 @@
 
 ## 1.2.2
 
-### Patch Changes
+### 修補變更
 
 - [#766](https://github.com/mattpocock/skills/pull/766) [`4aaccb5`](https://github.com/mattpocock/skills/commit/4aaccb58d40559d7e3c59a029b2290ae5ba538de) 感謝 [@mattpocock](https://github.com/mattpocock)！ - 使 `writing-for-agents` 再次可在 Codex 中由模型呼叫。
 
@@ -26,7 +86,7 @@
 
 ## 1.2.0
 
-### Minor Changes
+### 次要變更
 
 - [#551](https://github.com/mattpocock/skills/pull/551) [`697d4ce`](https://github.com/mattpocock/skills/commit/697d4ce9742da558fd1ba6697c8e9775e2e302dd) 感謝 [@mattpocock](https://github.com/mattpocock)！ - 在每個技能的 Claude Code 前言中新增 Codex Metadata，以便該集合在兩個測試環境中均可運作而無需產生的副本。
 
@@ -93,7 +153,7 @@
 
 - [#533](https://github.com/mattpocock/skills/pull/533) [`45afd80`](https://github.com/mattpocock/skills/commit/45afd8074a8b7de5fe073845d080fa9dd6c429fa) 感謝 [@mattpocock](https://github.com/mattpocock)！ - 為 **`improve-codebase-architecture`** 技能的 Explore 步驟新增 YAGNI 範圍過濾器。它不再均勻地掃描整個儲存庫，而是將範圍縮小到變更實際落地的位置：如果您指定方向，它就會採納，否則它會讀取最近約 20 條提交訊息，以使探索偏向積極開發的路徑。在無人觸及的程式碼中進行深化機會是您永遠無法兌現的重構 — 槓桿作用僅在您持續編輯的地方得到回報 — 因此報告停止整理儲存庫中休眠的角落。
 
-### Patch Changes
+### 修補變更
 
 - [#763](https://github.com/mattpocock/skills/pull/763) [`77d207e`](https://github.com/mattpocock/skills/commit/77d207ef03219cc603e2832e1159cbdd1c91818e) 感謝 [@mattpocock](https://github.com/mattpocock)！ - 磨練 `/ask-matt` — 路由器現在涵蓋階段邊界、兩個 wayfinder 錯誤以及兩個它從未提及的技能。
 
@@ -156,7 +216,7 @@
 
 ## 1.1.0
 
-### Minor Changes
+### 次要變更
 
 - [#406](https://github.com/mattpocock/skills/pull/406) [`930a450`](https://github.com/mattpocock/skills/commit/930a450089f77a49af09001d955db8452a4b867d) 感謝 [@mattpocock](https://github.com/mattpocock)！ - 使 **`ask-matt`** 路由器與完整技能集合保持最新。它現在對映了它所缺少的五個技能：**`tdd`**（作為 `implement` 驅動的紅-綠引擎編織到主流程中）、**`diagnosing-bugs`**（新的「事物損壞」入口 — 先前沒有針對 bug 的路線）、**`domain-modeling`** 與 **`codebase-design`**（新的「底下詞彙」章節），以及 **`grilling`**（共享的面試原語）。`prototype` 作為獨立項目被充實，且描述從「使用者呼叫的技能」擴大到「技能」。`CLAUDE.md` 中新增了一條維護規則，以便任何未來的技能新增/重新命名/移除或流程變更都會觸發 `ask-matt` 的重新檢查，位於現有文件頁面重新同步規則旁。
 
@@ -202,7 +262,7 @@
   - **HITL / AFK ticket 分類。** 每個 ticket 型別都是 **HITL**（人在迴圈中 — 盤問、原型）或 **AFK**（代理人單獨 — 研究；任務可以是兩者之一）。HITL ticket 僅透過即時交流解決，因此「等待人類」落出了標籤之外 — 回答自己問題的盤問代理人根據定義打破了 HITL。（這修復了學生關於 `/wayfinder` 盤問*自身*而非人類的報告。）
   - **恢復無迷霧早期退出。** 如果開頭的廣度優先盤問未浮現任何迷霧，則旅程小到足以容納在單一工作階段中 — 因此它會停止並詢問您希望如何繼續，而不是建構無人需要的地圖。
 
-### Patch Changes
+### 修補變更
 
 - [#464](https://github.com/mattpocock/skills/pull/464) [`639df6e`](https://github.com/mattpocock/skills/commit/639df6e7386dfddc739b2aecdeff37a876f2483b) 感謝 [@mattpocock](https://github.com/mattpocock)！ - 將 **`tdd`** 重構為僅供參考的技能，並新增缺少的反模式。
 
@@ -218,13 +278,13 @@
 
 ## 1.0.1
 
-### Patch Changes
+### 修補變更
 
 - [`d20ee26`](https://github.com/mattpocock/skills/commit/d20ee2684e2a9442698ac3c1e0f2c5b68c4cf296) 感謝 [@mattpocock](https://github.com/mattpocock)！ - 使 **`teach`** 技能重用優先。課程現在由 `./assets/` 中可重用的**元件**建構 — 樣式表、測驗小工具、模擬器、圖表助手。重用是預設做法：代理人在撰寫課程之前閱讀 `./assets/`、從現有內容建構，並將任何新的與可重用的內容提取為元件，而非行內化它。
 
 ## 1.0.0
 
-### Major Changes
+### 重大變更
 
 - [`47bde84`](https://github.com/mattpocock/skills/commit/47bde84da032afb2e5058f997f3bbca47d321dbd) 感謝 [@mattpocock](https://github.com/mattpocock)！ - 新增 **`ask-matt`** 技能 — 一個使用者呼叫的路由器，指向適合您情況的技能或流程。
 
@@ -259,12 +319,12 @@
 
   **重大變更：** `write-a-skill` 已被移除；請改用 `writing-great-skills`。
 
-### Minor Changes
+### 次要變更
 
 - [`47bde84`](https://github.com/mattpocock/skills/commit/47bde84da032afb2e5058f997f3bbca47d321dbd) 感謝 [@mattpocock](https://github.com/mattpocock)！ - 新增 **`resolving-merge-conflicts`** 技能 — 用於解決進行中 git 合併或 rebase 衝突的迴圈。獨立，不依賴其他技能。
 
 - [`47bde84`](https://github.com/mattpocock/skills/commit/47bde84da032afb2e5058f997f3bbca47d321dbd) 感謝 [@mattpocock](https://github.com/mattpocock)！ - 在整個文件中將技能分類學從 **Commands / Skills** 重新命名為 **User-invoked / Model-invoked**，並新增定義該拆分的 `docs/invocation.md`：使用者呼叫的技能僅在您輸入時才可達，並且存在於進行編排；當任務合適時，模型呼叫的技能也可以自動到達。使用者呼叫的技能可以呼叫模型呼叫的技能，但切勿呼叫另一個使用者呼叫的技能。
 
-### Patch Changes
+### 修補變更
 
 - [`47bde84`](https://github.com/mattpocock/skills/commit/47bde84da032afb2e5058f997f3bbca47d321dbd) 感謝 [@mattpocock](https://github.com/mattpocock)！ - 緊縮 **`review`** 技能：快速失敗的 ref 檢查、單一來源的規則，以及無作業裁剪。

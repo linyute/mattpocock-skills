@@ -18,7 +18,8 @@
 | 來自其他人的原始錯誤報告，尚未被確認或整理 | 先使用 [triage](https://aihero.dev/skills-triage) |
 | 用於回答設計問題而非追蹤缺陷的一次性程式碼 | [prototype](https://aihero.dev/skills-prototype) |
 | 透過測試先行建構規劃中的行為 | [tdd](https://aihero.dev/skills-tdd) |
-| 不存在適合鎖定該錯誤的良好接縫 | [improve-codebase-architecture](https://aihero.dev/skills-improve-codebase-architecture)：本技能會自行交接至該處 |
+| 修復完成後，詢問哪些措施原本可以避免此錯誤 | [retro](https://aihero.dev/skills-retro)，在同一個工作階段中執行 |
+| 沒有合適的接縫可用來鎖定此錯誤 | [improve-codebase-architecture](https://aihero.dev/skills-improve-codebase-architecture)，由你自行啟動 |
 
 ## 緊湊循環即技能核心
 
@@ -51,7 +52,7 @@
 | 進入階段 5 | 探針精確對應特定預測，一次只變動一個變數，每條除錯日誌都帶有 `[DEBUG-a4f2]` 風格的標籤，以便透過一次 grep 即可完成清理 |
 | 完成 | 原始重現案例不再重現、插樁程式碼已清除，且被證實正確的假說已寫入 commit 訊息中 |
 
-階段 5 有一個值得注意的退場機制。迴歸測試在修復前撰寫，但前提是必須存在**正確的接縫**：該接縫能讓測試演練呼叫端發生錯誤時的真實模式。如果唯一可用的接縫過於膚淺，技能會直接說明這一點，而非撰寫一個給予虛假信心的測試。接縫的缺失本身就是一項發現，這會將事後檢討引導至 `improve-codebase-architecture`。
+第五階段有個值得了解的退場機制。迴歸測試會在修復前撰寫，但前提是存在適合撰寫測試的**正確接縫**：也就是測試能在呼叫端重現實際發生的錯誤模式。如果唯一可用的接縫過於淺層，技能會如實說明，而不會撰寫造成錯誤信心的測試。缺乏合適接縫本身就是一項發現，技能會如實記錄，而不是掩蓋它。
 
 ## 常見問題
 
@@ -90,4 +91,4 @@ Snyk 會標記它，但這項標記是偽陽性（false positive）。它是該�
 
 `diagnosing-bugs` 是一個隨時可調用的獨立技能。當某個部分損壞時你可以進入它，而在修復與迴歸測試完成後即可離開；它不保留狀態，也無需事前設定。[ask-matt](https://aihero.dev/skills-ask-matt) 會將「某處發生故障」路由至此。
 
-兩個相鄰技能至關重要。[improve-codebase-architecture](https://aihero.dev/skills-improve-codebase-architecture) 在真正的發現是「程式碼缺乏能鎖定該錯誤的接縫」時接手[交接（handoff）](https://www.aihero.dev/ai-coding-dictionary/handoff)；該建議是在修復完成、掌握更多資訊後提出。[triage](https://aihero.dev/skills-triage) 則位於其上游，針對其他人提出的原始報告錯誤，執行前兩個階段的淺層版本。
+有兩個相鄰的技能值得注意。[retro](https://aihero.dev/skills-retro) 接續在它之後：修復完成後，可在同一個工作階段中執行，並在掌握比一開始更多資訊時，詢問哪些措施原本可以避免此錯誤。此技能不會自行呼叫 `retro`，因為它是由使用者啟動的。[triage](https://aihero.dev/skills-triage) 則位於它之前，適用於收到他人原始回報的錯誤，並以較淺層的方式執行相同的前兩個階段。
