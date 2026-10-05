@@ -68,6 +68,7 @@ claude plugins install mattpocock-skills
 - [/to-tickets](./engineering/to-tickets.md) `/to-tickets` Skill 將規格拆解為 Agent 可以建構的小型 Ticket。
 - [/implement](./engineering/implement.md) `/implement` Skill 採用測試驅動方式將完成的規格建構成程式碼。
 - [/code-review](./engineering/code-review.md) `/code-review` Skill 根據你的標準與規格審查 diff。
+- [/retro](./engineering/retro.md) `/retro` Skill 回顧工作階段，並建議程式碼庫的改進方向。
 
 ### 03 塑形
 
@@ -79,7 +80,7 @@ claude plugins install mattpocock-skills
 - [/prototype](./engineering/prototype.md) `/prototype` Skill 用隨後即可刪除的程式碼回答設計問題。
 - [/research](./engineering/research.md) `/research` Skill 從原始來源閱讀並取得附有引用的解答。
 
-### 04 維護
+### 04 工程
 
 保持程式碼庫與 Issue 清單健康；為流程產生工作任務。
 
@@ -87,11 +88,11 @@ claude plugins install mattpocock-skills
 
 - [/improve-codebase-architecture](./engineering/improve-codebase-architecture.md) `/improve-codebase-architecture` Skill 以視覺化報告找出值得重構的模組。
 - [/diagnosing-bugs](./engineering/diagnosing-bugs.md) `/diagnosing-bugs` Skill 從失敗的重現步驟開始診斷棘手的 Bug。
-- [/resolving-merge-conflicts](./engineering/resolving-merge-conflicts.md) `/resolving-merge-conflicts` Skill 逐個區塊解決合併或變基衝突。
 - [/triage](./engineering/triage.md) `/triage` Skill 將原始 Issue 分類為可供認領的工作。
 - [/wizard](./engineering/wizard.md) `/wizard` Skill 產生引導人工進行設定的指令稿。
+- [/implement-spec](./engineering/implement-spec.md) `/implement-spec` Skill 一次建置完整規格，並透過平行子代理協作。
 
-### 05 生產力 Skill
+### 05 生產力技能
 
 由你執行的非程式碼相關、面向人類的工作流程。
 
@@ -110,6 +111,7 @@ claude plugins install mattpocock-skills
 
 從 [/codebase-design](./engineering/codebase-design.md) 開始
 
+- [/pr](engineering/pr.md) `/pr` Skill Pull Request 內文應採用的格式。
 - [/codebase-design](./engineering/codebase-design.md) `/codebase-design` Skill 設計深度模組的詞彙庫。
 - [/domain-modeling](./engineering/domain-modeling.md) `/domain-modeling` Skill 淬鍊專案使用的詞彙並將其記錄下來。
 - [/grilling](./productivity/grilling.md) `/grilling` Skill 其他 Skill 用來對計畫進行壓力測試的審問訪談。
