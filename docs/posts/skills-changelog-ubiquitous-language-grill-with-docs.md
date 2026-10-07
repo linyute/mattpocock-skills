@@ -1,5 +1,7 @@
 # 技能變更紀錄：Ubiquitous Language -> /grill-with-docs
 
+[解說錄影見 AI Hero](https://www.aihero.dev/skills/skills-changelog-ubiquitous-language-grill-with-docs)
+
 擁有超過 4.66 萬顆星，我的 [技能儲存庫](https://github.com/mattpocock/skills) 已經成為我對工程深層思考的精華彙整。我現在正在做的是定期發布有關技能變更的最新資訊，而這些影片就像變更紀錄一樣，讓您可以掌握最新的變更動態。
 
 這些技能旨在讓您下載到自己的環境設定中並立即開始使用。它們代表了我每天在自己的工作中所使用的方法與技術。
