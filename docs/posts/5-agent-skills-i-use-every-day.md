@@ -15,11 +15,11 @@
 結果呢？AI 所產出的程式碼品質大幅提升。
 
 
-**工具組：** [grill-me](/skills-grill-me) · [to-spec](/skills-to-spec) · [to-tickets](/skills-to-tickets) · [tdd](/skills-tdd) · improve-codebase-architecture · [查看所有 skills →](/skills)
+**工具組：** [grill-me](../productivity/grill-me.md) · [to-spec](../engineering/to-spec.md) · [to-tickets](../engineering/to-tickets.md) · [tdd](../engineering/tdd.md) · [improve-codebase-architecture](../engineering/improve-codebase-architecture.md) · [查看所有 skills →](https://github.com/linyute/mattpocock-skills/tree/main/skills)
 
 ## 1. `/grill-me`：充實一個想法
 
-[閱讀指南](/skills-grill-me) · [GitHub](https://github.com/mattpocock/skills/tree/main/skills/productivity/grill-me)
+[閱讀指南](../productivity/grill-me.md) · [GitHub](https://github.com/linyute/mattpocock-skills/blob/main/skills/productivity/grill-me/SKILL.md)
 
 ```bash
 npx skills@latest add mattpocock/skills
@@ -47,7 +47,7 @@ npx skills@latest add mattpocock/skills
 
 ## 2. `/to-spec`：從對話到文件
 
-[閱讀指南](/skills-to-spec) · [GitHub](https://github.com/mattpocock/skills/tree/main/skills/engineering/to-spec)
+[閱讀指南](../engineering/to-spec.md) · [GitHub](https://github.com/linyute/mattpocock-skills/blob/main/skills/engineering/to-spec/SKILL.md)
 
 ```bash
 npx skills@latest add mattpocock/skills
@@ -71,7 +71,7 @@ _（這個 skill 以前叫做 `/to-prd`。工作內容相同，名稱更清楚�
 
 ## 3. `/to-tickets`：把終點拆解成旅程
 
-[閱讀指南](/skills-to-tickets) · [GitHub](https://github.com/mattpocock/skills/tree/main/skills/engineering/to-tickets)
+[閱讀指南](../engineering/to-tickets.md) · [GitHub](https://github.com/linyute/mattpocock-skills/blob/main/skills/engineering/to-tickets/SKILL.md)
 
 ```bash
 npx skills@latest add mattpocock/skills
@@ -104,7 +104,7 @@ _（前身為 `/to-issues`。）_
 
 ## 4. `/tdd`：提升程式碼品質
 
-[閱讀指南](/skills-tdd) · [GitHub](https://github.com/mattpocock/skills/tree/main/skills/engineering/tdd)
+[閱讀指南](../engineering/tdd.md) · [GitHub](https://github.com/linyute/mattpocock-skills/blob/main/skills/engineering/tdd/SKILL.md)
 
 ```bash
 npx skills@latest add mattpocock/skills
@@ -132,7 +132,7 @@ npx skills@latest add mattpocock/skills
 
 ## 5. `/improve-codebase-architecture`：讓你的程式碼對 Agent 友善
 
-[在 GitHub 上檢視](https://github.com/mattpocock/skills/tree/main/skills/engineering/improve-codebase-architecture)
+[閱讀指南](../engineering/improve-codebase-architecture.md) · [在 GitHub 上檢視](https://github.com/mattpocock/skills/tree/main/skills/engineering/improve-codebase-architecture)
 
 ```bash
 npx skills@latest add mattpocock/skills
@@ -157,7 +157,7 @@ TDD 對你的程式碼庫要求很高。在結構不良的程式碼庫中，測�
 **如果你的程式碼庫是垃圾，AI 就會在這個程式碼庫裡產出垃圾。**
 
 
-以上是七個中的五個。其餘的 — grill-with-docs、domain-modeling、triage — 以及更新的變更記錄，都放在 [/skills](/skills)。
+以上是七個中的五個。其餘的 — grill-with-docs、domain-modeling、triage — 以及更新的變更記錄，都放在 [/skills](https://github.com/linyute/mattpocock-skills/tree/main/skills)。
 
 ## 為何這很重要：把 AI 當作工程師對待
 

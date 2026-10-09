@@ -89,7 +89,7 @@
 你的選項：
 
 - **如果你還有上下文額度**：直接在同一個工作階段中實作，不需要交接
-- **如果上下文快用完了**：使用 `/2PRD` 技能建立 PRD（產品需求文件），作為交接產物
+- **如果上下文快用完了**：使用 `/to-prd` 技能建立 PRD（產品需求文件），作為交接產物
 
 **不要**為了撰寫 PRD 而清除上下文並重新開始。那等於是把你所有的設計成果都丟掉。拷問工作階段中的每一項決策都有價值，應該要不是化為程式碼，就是記錄在交接產物中。
 
@@ -141,7 +141,7 @@
 ![在兩個平行拷問工作階段之間來回切換的示意圖](https://res.cloudinary.com/total-typescript/image/upload/v1779715893/ai-hero-images/zvlogainpdjwt6bjv9cy.png)
 
 <Callout intent="skill">
-剛接觸拷問工作流程？從 [/grill-with-docs](/grill-with-docs) 開始 — 在建構之前先對齊文件。
+剛接觸拷問工作流程？從 [/grill-with-docs](https://github.com/linyute/mattpocock-skills/blob/main/skills/engineering/grill-with-docs/SKILL.md) 開始 — 在建構之前先對齊文件。
 </Callout>
 
 ## 重點摘要
