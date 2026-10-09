@@ -1,5 +1,7 @@
 # 如何拯救被 AI 搞砸的程式碼庫（只需一個技能）
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3MP8D-mdheA?si=bbLuaOvzfuy8NHms" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 你大概已經看過無數 LinkedIn 上 CEO 們的貼文，說程式碼現在變得很廉價，大家可以比以往任何時候都更快推進。但實際發生的情況是：AI 只是加速了軟體熵增。換句話說，程式碼庫崩壞的速度比以往任何時候都快，因為每次你做出一項沒有考量整個程式碼庫的變更，就很可能引入一些細小、古怪的東西，讓程式碼庫變得更難修改。隨著時間推移，這些問題會像滾雪球般越滾越大，最後變成一大坨泥巴球（ball of mud）。這種髒亂不堪的爛泥，如果不知道方法，幾乎無法挽回。
 
 我之前做過一支影片，向大家介紹「深模組（deep modules）」的概念。那支影片偏重於預防，也就是如何避免你的專案走到那個地步。這次我們來談談解方：如何把一個感覺已經無可救藥的程式碼庫救回來。你可以靠著一些老派的軟體基本功，加上我改良後的「改善程式碼庫架構」（improve codebase architecture）技能來做到。

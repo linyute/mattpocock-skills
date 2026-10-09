@@ -17,7 +17,7 @@
 | [技能變更紀錄：/handoff、/prototype、/review 與 /writing](./skills-changelog-handoff-prototype-review-and-writing.md) | [新技能登場！/handoff、/prototype、/review 與 /writing-*｜Skills 更新紀錄](./new_skills_v0.x.md) |
 | | [用 /triage 清空惡夢等級的待辦清單](./triage.md) |
 | [技能變更紀錄：Ubiquitous Language -> /grill-with-docs](./skills-changelog-ubiquitous-language-grill-with-docs.md) | |
-| [如何拯救被 AI 搞砸的程式碼庫（只需一個技能）](./improve-codebase-architecture.md) | |
+| | [如何拯救被 AI 搞砸的程式碼庫（只需一個技能）](./improve_codebase_architecture.md) |
 | | [用 Claude Code 打造真實功能：每個步驟全解析](./building_a_real_feature_with_claude_code.md) |
 | [我每天都在用的 5 個 Agent Skills](./5-agent-skills-i-use-every-day.md) | [我每天都在用的 5 個 Claude Code 技能](./5_claude_code_skills_i_use_every_single_day.md) |
 | [我的 AI 開發七階段](./my-7-phases-of-ai-development.md) | [AI 驅動開發的 7 個階段](./the_7_phases_of_ai-driven_development.md) |
